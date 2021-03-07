@@ -1,10 +1,8 @@
-/* eslint-disable jsx-a11y/no-static-element-interactions */
-/* eslint-disable jsx-a11y/click-events-have-key-events */
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import DirectionsForm from './components/DirectionsForm';
 import GoogleMap from './components/Map';
-import Alert from './components/Alert/Alert';
+import Alert from './components/Alert';
 import './styles/styles.css';
 import { displayAlert } from './redux/actions/stuartActions';
 
