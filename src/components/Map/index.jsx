@@ -1,3 +1,3 @@
-import GoogleMap from './ReactMap';
+import Map from './Map';
 
-export default GoogleMap;
+export default Map;

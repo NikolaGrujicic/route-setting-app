@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux';
 import PickupMarker from '../Markers/PickupMarker';
 import DropOffMarker from '../Markers/DropOffMarker';
 
-const SimpleMap = () => {
+const Map = () => {
   const pickup = useSelector(state => state.stuart.pickup);
   const dropOff = useSelector(state => state.stuart.dropOff);
   const showPickup = useSelector(state => state.stuart.showPickup);
@@ -27,4 +27,4 @@ const SimpleMap = () => {
   );
 };
 
-export default SimpleMap;
+export default Map;

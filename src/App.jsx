@@ -1,7 +1,7 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import DirectionsForm from './components/DirectionsForm';
-import GoogleMap from './components/Map';
+import Map from './components/Map';
 import Alert from './components/Alert';
 import './styles/styles.css';
 import { displayAlert } from './redux/actions/stuartActions';
@@ -12,7 +12,7 @@ const App = () => {
     <div onClick={() => dispatch(displayAlert(false))}>
       <Alert />
       <DirectionsForm />
-      <GoogleMap
+      <Map
         id="map"
         options={{
           center: { lat: 48.8606, lng: 2.3376 },
