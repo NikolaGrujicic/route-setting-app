@@ -1,8 +1,19 @@
-import React from 'react';
-import { useSelector } from 'react-redux';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { displayAlert } from '../../redux/actions/stuartActions';
 
 const Alert = () => {
+  const dispatch = useDispatch();
   const showAlert = useSelector(state => state.stuart.showAlert);
+
+  useEffect(() => {
+    if(showAlert) {
+      setTimeout(() => {
+        dispatch(displayAlert(false));
+      }, 5000);
+    }
+  }, [showAlert]);
+
   return (
     <div>
       {showAlert && (
