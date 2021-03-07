@@ -13,6 +13,9 @@ const DirectionsForm = () => {
 
   const [pickupSvgColor, setPickupSvgColor] = useState('');
   const [dropOffSvgColor, setDropOffSvgColor] = useState('');
+  
+  const [pickupValue, setPickupValue] = React.useState(0);
+  const [dropOffValue, setDropOffValue] = React.useState(0);
 
   const showPickup = useSelector(state => state.stuart.showPickup);
   const showDropOff = useSelector(state => state.stuart.showDropOff);
@@ -90,6 +93,30 @@ const DirectionsForm = () => {
     return dropOffBadgeBlank;
   };
 
+  useEffect(() => {
+    const address = { address: pickupValue };
+
+    const timeout = setTimeout(() => {
+      if(pickupValue !== 0){
+        dispatch(setPickupSpotAction(address));
+      }
+    }, 2000);
+
+    return () => clearTimeout(timeout);
+  }, [pickupValue]);
+
+  useEffect(() => {
+    const address = { address: dropOffValue };
+
+    const timeout = setTimeout(() => {
+      if(dropOffValue !== 0){
+        dispatch(setDropOffSpotAction(address));
+      }
+    }, 2000);
+
+    return () => clearTimeout(timeout);
+  }, [dropOffValue]);
+
   return (
     <div className="card directions-form-container">
       <form onSubmit={onSubmit}>
@@ -98,7 +125,7 @@ const DirectionsForm = () => {
             <img src={showPickupSvg(pickupSvgColor)} className="pickup-img" alt="pick up" />
           </div>
           <div className="col-sm-10">
-            <input type="text" name="pickupAddress" className="form-control pickup-input" placeholder="Pick up address" onBlur={e => setPickupMarker(e)} />
+            <input type="text" name="pickupAddress" className="form-control pickup-input" placeholder="Pick up address" onBlur={e => setPickupMarker(e)} onInput={e => setPickupValue(e.target.value)} />
           </div>
         </div>
         <div className="row-address">
@@ -106,7 +133,7 @@ const DirectionsForm = () => {
             <img src={showDropOffSvg(dropOffSvgColor)} className="dropoff-img" alt="drop off" />
           </div>
           <div className="col-sm-10">
-            <input type="text" name="dropOffAddress" className="form-control dropoff-input" placeholder="Drop off address" onBlur={e => { setDropOffMarker(e); }} />
+            <input type="text" name="dropOffAddress" className="form-control dropoff-input" placeholder="Drop off address" onBlur={e => { setDropOffMarker(e); }} onInput={e => setDropOffValue(e.target.value)} />
           </div>
         </div>
         <div className="row-address mb-10 create-btn-container">
